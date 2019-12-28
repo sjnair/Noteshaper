@@ -1,4 +1,4 @@
-// Noteshaper by Seiji Nair
+// Noteshaper by Seiji Nair, 2020
 /*
 
   1. Create slider object
@@ -36,6 +36,8 @@ var halfheight;
 var clicked;
 var hexminradius;
 var hexmaxradius;
+var cos30;
+var sin30;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -45,8 +47,8 @@ function setup() {
   ellipseMode(CENTER);
   angleMode(DEGREES);
   clicked = false;
-  let cos30 = cos(30);
-  let sin30 = sin(30);
+  cos30 = cos(30);
+  sin30 = sin(30);
 
   if (windowWidth > windowHeight) {
     hexminradius = windowHeight / 20;
@@ -309,4 +311,75 @@ function mousePressed() {
 
 function mouseReleased() {
   clicked = false;
+}
+
+function windowResized() {
+  halfwidth = windowWidth / 2;
+  halfheight = windowHeight / 2;
+  if (windowWidth > windowHeight) {
+    hexminradius = windowHeight / 20;
+  } else {
+    hexminradius = windowWidth / 20;
+  }
+
+  if (windowWidth > windowHeight) {
+    hexmaxradius = windowHeight / 3;
+  } else {
+    hexmaxradius = windowWidth / 3;
+  }
+
+  slider1.Xstart = halfwidth;
+  slider1.Ystart = halfheight-hexminradius;
+  slider1.Xend = halfwidth;
+  slider1.Yend = halfheight-hexmaxradius;
+  slider1.circleR = windowHeight / 50;
+  slider1.circleX = slider1.output*(slider1.Xend-slider1.Xstart)+slider1.Xstart;
+  slider1.circleY = slider1.output*(slider1.Yend-slider1.Ystart)+slider1.Ystart;
+  slider1.linecalc();
+  
+  slider2.Xstart = halfwidth + hexminradius * cos30;
+  slider2.Ystart = halfheight - (hexminradius * sin30);
+  slider2.Xend = halfwidth + hexmaxradius * cos30;
+  slider2.Yend = halfheight - (hexmaxradius * sin30);
+  slider2.circleR = windowHeight / 50;
+  slider2.circleX = slider2.output*(slider2.Xend-slider2.Xstart)+slider2.Xstart;
+  slider2.circleY = slider2.output*(slider2.Yend-slider2.Ystart)+slider2.Ystart;
+  slider2.linecalc();
+  
+  slider3.Xstart = halfwidth + hexminradius * cos30;
+  slider3.Ystart = halfheight + (hexminradius * sin30);
+  slider3.Xend = halfwidth + hexmaxradius * cos30;
+  slider3.Yend = halfheight + (hexmaxradius * sin30);
+  slider3.circleR = windowHeight / 50;
+  slider3.circleX = slider3.output*(slider3.Xend-slider3.Xstart)+slider3.Xstart;
+  slider3.circleY = slider3.output*(slider3.Yend-slider3.Ystart)+slider3.Ystart;
+  slider3.linecalc();
+  
+  slider4.Xstart = halfwidth;
+  slider4.Ystart = halfheight + hexminradius;
+  slider4.Xend = halfwidth;
+  slider4.Yend = halfheight + hexmaxradius;
+  slider4.circleR = windowHeight / 50;
+  slider4.circleX = slider4.output*(slider4.Xend-slider4.Xstart)+slider4.Xstart;
+  slider4.circleY = slider4.output*(slider4.Yend-slider4.Ystart)+slider4.Ystart;
+  slider4.linecalc();
+  
+  slider5.Xstart = halfwidth - hexminradius * cos30;
+  slider5.Ystart = halfheight + (hexminradius * sin30);
+  slider5.Xend = halfwidth - hexmaxradius * cos30;
+  slider5.Yend = halfheight + (hexmaxradius * sin30);
+  slider5.circleR = windowHeight / 50;
+  slider5.circleX = slider5.output*(slider5.Xend-slider5.Xstart)+slider5.Xstart;
+  slider5.circleY = slider5.output*(slider5.Yend-slider5.Ystart)+slider5.Ystart;
+  slider5.linecalc();
+  
+  slider6.Xstart = halfwidth - hexminradius * cos30;
+  slider6.Ystart = halfheight - (hexminradius * sin30);
+  slider6.Xend = halfwidth - hexmaxradius * cos30;
+  slider6.Yend = halfheight - (hexmaxradius * sin30);
+  slider6.circleR = windowHeight / 50;
+  slider6.circleX = slider6.output*(slider6.Xend-slider6.Xstart)+slider6.Xstart;
+  slider6.circleY = slider6.output*(slider6.Yend-slider6.Ystart)+slider6.Ystart;
+  slider6.linecalc();
+
 }
