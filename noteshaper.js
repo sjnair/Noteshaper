@@ -39,6 +39,11 @@ var hexmaxradius;
 var cos30;
 var sin30;
 
+let myFont;
+function preload() {
+  myFont = loadFont("JosefinSans-Light.ttf");
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   halfwidth = windowWidth / 2;
@@ -130,6 +135,18 @@ function draw() {
   slider5.display();
   slider6.clickdetect();
   slider6.display();
+  
+  push();
+  fill((slider1.output+slider2.output+slider3.output+slider4.output+slider5.output+slider6.output)*60, 30, 80,0.3)
+  noStroke();
+  textAlign(LEFT, TOP);
+  textFont(myFont);
+  textSize(hexminradius*3);
+  translate(windowWidth, 0);
+  rotate(90);
+  text('Noteshaper', 0, 0);
+  
+  pop();
 }
 
 function windowResized() {
@@ -369,7 +386,7 @@ function windowResized() {
   slider5.Xend = halfwidth - hexmaxradius * cos30;
   slider5.Yend = halfheight + (hexmaxradius * sin30);
   slider5.circleR = windowHeight / 50;
-  slider5.circleX = slider5.output*(slider5.Xend-slider5.Xstart)+slider5.Xstart;
+    slider5.circleX = slider5.output*(slider5.Xend-slider5.Xstart)+slider5.Xstart;
   slider5.circleY = slider5.output*(slider5.Yend-slider5.Ystart)+slider5.Ystart;
   slider5.linecalc();
   
